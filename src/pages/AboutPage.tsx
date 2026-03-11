@@ -4,12 +4,12 @@ import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 
 const members = [
-  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Guitar },
+  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music },
   { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic },
-  { name: "Fred Calmes", role: "Bass & Vocals", icon: Music },
-  { name: "Jody Lacky", role: "Saxophone", icon: Music },
-  { name: "Bill Wilson", role: "Drums", icon: Drum },
-  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Piano },
+  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines },
+  { name: "Jody Lacky", role: "Saxophone", icon: Volume2 },
+  { name: "Bill Wilson", role: "Drums", icon: Disc3 },
+  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones },
 ];
 
 const AboutPage: FC = () => {
