@@ -30,7 +30,7 @@ const HomePage: FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className={`text-5xl sm:text-7xl lg:text-8xl font-heading mb-6 transition-all duration-700 ${
+            className={`text-4xl sm:text-6xl lg:text-8xl font-heading mb-4 sm:mb-6 transition-all duration-700 leading-tight ${
               isOutside ? "text-gradient-cool" : "text-gradient-gold"
             }`}
           >
