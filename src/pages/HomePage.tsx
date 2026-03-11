@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ToggleLeft, ToggleRight, Calendar, Loader2, Mic, Music, Headphones, Volume2, Disc3, AudioLines } from "lucide-react";
+import { ArrowRight, ToggleLeft, ToggleRight, Calendar, Loader2, Mic, Music, Headphones, Volume2, Disc3, AudioLines, Camera } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import ShowCard from "@/components/ShowCard";
@@ -12,6 +12,21 @@ import oliviaImg from "@/assets/members/olivia.jpg";
 import fredImg from "@/assets/members/fred.jpg";
 import jodyImg from "@/assets/members/jody.jpg";
 import terryImg from "@/assets/members/terry.jpg";
+import galleryPhoto1 from "@/assets/gallery/photo1.jpg";
+import galleryPhoto2 from "@/assets/gallery/photo2.jpg";
+import galleryPhoto3 from "@/assets/gallery/photo3.jpg";
+import galleryPhoto4 from "@/assets/gallery/photo4.jpg";
+import galleryPhoto5 from "@/assets/gallery/photo5.jpg";
+import galleryPhoto6 from "@/assets/gallery/photo6.jpg";
+
+const galleryPhotos = [
+  { src: galleryPhoto1, alt: "The band performing live on stage" },
+  { src: galleryPhoto2, alt: "Terry and Jock jamming together" },
+  { src: galleryPhoto3, alt: "Olivia and Terry performing" },
+  { src: galleryPhoto4, alt: "Full band on stage with crowd" },
+  { src: galleryPhoto5, alt: "The Outsiders at Dudie's Burger Festival" },
+  { src: galleryPhoto6, alt: "Jock and Terry on stage at Coopers" },
+];
 
 const members = [
   { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },
@@ -142,6 +157,39 @@ const HomePage: FC = () => {
               </AnimatedSection>
             );
           })}
+        </div>
+      </AnimatedSection>
+
+      {/* Photo Gallery Preview */}
+      <AnimatedSection className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl sm:text-4xl font-heading text-center text-gradient-gold mb-3">
+          Snapshots from the Stage
+        </h2>
+        <p className="text-center text-muted-foreground mb-8">
+          Whether we're inside or outside, we always look good doing it.
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto">
+          {galleryPhotos.map((photo, index) => (
+            <AnimatedSection key={index} delay={index * 0.08}>
+              <div className="glass-card p-0 overflow-hidden rounded-xl group hover:scale-105 transition-transform duration-300">
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full aspect-[4/3] object-cover"
+                />
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <div className="text-center mt-6">
+          <Link
+            to="/photos"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
+          >
+            <Camera className="w-4 h-4" />
+            See All Photos
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </AnimatedSection>
 

@@ -1,24 +1,23 @@
 import { FC, useState } from "react";
-import { X, ChevronLeft, ChevronRight, Music } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import galleryPhoto1 from "@/assets/gallery/photo1.jpg";
+import galleryPhoto2 from "@/assets/gallery/photo2.jpg";
+import galleryPhoto3 from "@/assets/gallery/photo3.jpg";
+import galleryPhoto4 from "@/assets/gallery/photo4.jpg";
+import galleryPhoto5 from "@/assets/gallery/photo5.jpg";
+import galleryPhoto6 from "@/assets/gallery/photo6.jpg";
 
-/*
-  PHOTO GALLERY
-  To add real photos, replace the placeholder entries below with objects containing:
-  - src: the image URL or imported path
-  - alt: descriptive alt text for accessibility
-  
-  Example:
-  { src: "/images/band-photo-1.jpg", alt: "The band performing at Blue Note Lounge" }
-*/
-
-const photos = Array.from({ length: 8 }, (_, i) => ({
-  id: i + 1,
-  src: "", // Replace with actual image path
-  alt: `Band photo ${i + 1}`,
-}));
+const photos = [
+  { src: galleryPhoto1, alt: "The band performing live on stage" },
+  { src: galleryPhoto2, alt: "Terry and Jock jamming together" },
+  { src: galleryPhoto3, alt: "Olivia and Terry performing" },
+  { src: galleryPhoto4, alt: "Full band on stage with crowd" },
+  { src: galleryPhoto5, alt: "The Outsiders at Dudie's Burger Festival" },
+  { src: galleryPhoto6, alt: "Jock and Terry on stage at Coopers" },
+];
 
 const PhotosPage: FC = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -42,25 +41,18 @@ const PhotosPage: FC = () => {
           </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
           {photos.map((photo, index) => (
-            <AnimatedSection key={photo.id} delay={index * 0.05}>
+            <AnimatedSection key={index} delay={index * 0.05}>
               <div
-                className="glass-card aspect-square flex items-center justify-center cursor-pointer group hover:scale-105 transition-transform duration-300 hover:glow-amber overflow-hidden"
+                className="glass-card p-0 overflow-hidden rounded-xl cursor-pointer group hover:scale-105 transition-transform duration-300 hover:glow-amber"
                 onClick={() => openLightbox(index)}
               >
-                {photo.src ? (
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                ) : (
-                  <div className="flex flex-col items-center gap-2 text-muted-foreground group-hover:text-primary transition-colors">
-                    <Music className="w-10 h-10" />
-                    <span className="text-xs">Photo Coming Soon</span>
-                  </div>
-                )}
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full aspect-[4/3] object-cover"
+                />
               </div>
             </AnimatedSection>
           ))}
@@ -103,20 +95,11 @@ const PhotosPage: FC = () => {
               className="max-w-3xl max-h-[80vh] w-full mx-8"
               onClick={(e) => e.stopPropagation()}
             >
-              {photos[lightboxIndex].src ? (
-                <img
-                  src={photos[lightboxIndex].src}
-                  alt={photos[lightboxIndex].alt}
-                  className="w-full h-full object-contain rounded-xl"
-                />
-              ) : (
-                <div className="glass-card aspect-video flex items-center justify-center">
-                  <div className="flex flex-col items-center gap-3 text-muted-foreground">
-                    <Music className="w-16 h-16" />
-                    <span>Photo Coming Soon</span>
-                  </div>
-                </div>
-              )}
+              <img
+                src={photos[lightboxIndex].src}
+                alt={photos[lightboxIndex].alt}
+                className="w-full h-full object-contain rounded-xl"
+              />
             </div>
           </motion.div>
         )}
