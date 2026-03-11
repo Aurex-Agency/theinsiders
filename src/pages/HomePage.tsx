@@ -12,7 +12,7 @@ const HomePage: FC = () => {
   return (
     <Layout lightMode={isOutside ? "outside" : "inside"}>
       {/* Hero Section */}
-      <section className="min-h-[85vh] flex items-center justify-center px-4 relative overflow-hidden">
+      <section className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden">
         {/* Band photo background */}
         <div
           className="absolute inset-0 z-0"
@@ -30,7 +30,7 @@ const HomePage: FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className={`text-5xl sm:text-7xl lg:text-8xl font-heading mb-6 transition-all duration-700 ${
+            className={`text-4xl sm:text-6xl lg:text-8xl font-heading mb-4 sm:mb-6 transition-all duration-700 leading-tight ${
               isOutside ? "text-gradient-cool" : "text-gradient-gold"
             }`}
           >
@@ -41,7 +41,7 @@ const HomePage: FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+            className="text-base sm:text-xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto px-2"
           >
             If we're inside, we're The Insiders. If we're outside, we're The Outsiders.
             Either way, we bring the groove.
