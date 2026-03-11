@@ -101,17 +101,18 @@ const HomePage: FC = () => {
         <p className="text-center text-muted-foreground mb-8">
           The latest updates from the band
         </p>
-        <div className="max-w-lg mx-auto glass-panel rounded-xl overflow-hidden p-0">
+        <div className="max-w-lg mx-auto glass-panel rounded-xl overflow-hidden flex justify-center" style={{ padding: 0 }}>
           {/* 
             Facebook Page Plugin embed.
             Update the href parameter below if the band gets a custom Facebook URL.
-            width=300 is safer for narrow mobile layouts; adapt_container_width scales on larger screens.
+            The plugin renders at the specified width then adapt_container_width
+            lets it scale within the container. Using width=340 for a good balance.
           */}
           <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=300&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
-            width="100%"
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
+            style={{ border: "none", overflow: "hidden", width: "100%", maxWidth: "100%", display: "block" }}
             height="500"
-            style={{ border: "none", overflow: "hidden", maxWidth: "100%", display: "block" }}
+            scrolling="no"
             allowFullScreen
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
             title="The Insiders / The Outsiders Facebook Feed"
