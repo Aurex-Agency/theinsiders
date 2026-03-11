@@ -7,12 +7,16 @@ import AnimatedSection from "@/components/AnimatedSection";
 import ShowCard from "@/components/ShowCard";
 import { useShows } from "@/hooks/useShows";
 import bandHero from "@/assets/band-hero.jpg";
+import jockImg from "@/assets/members/jock.jpg";
+import oliviaImg from "@/assets/members/olivia.jpg";
+import fredImg from "@/assets/members/fred.jpg";
+import jodyImg from "@/assets/members/jody.jpg";
 
 const members = [
-  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: "" },
-  { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: "" },
-  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: "" },
-  { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: "" },
+  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },
+  { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: oliviaImg },
+  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: fredImg },
+  { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: jodyImg },
   { name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
   { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: "" },
 ];

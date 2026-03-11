@@ -2,14 +2,18 @@ import { FC } from "react";
 import { Mic, Music, Headphones, Volume2, Disc3, AudioLines } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import jockImg from "@/assets/members/jock.jpg";
+import oliviaImg from "@/assets/members/olivia.jpg";
+import fredImg from "@/assets/members/fred.jpg";
+import jodyImg from "@/assets/members/jody.jpg";
 
 const members = [
-  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music },
-  { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic },
-  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines },
-  { name: "Jody Lacky", role: "Saxophone", icon: Volume2 },
-  { name: "Bill Wilson", role: "Drums", icon: Disc3 },
-  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones },
+  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },
+  { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: oliviaImg },
+  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: fredImg },
+  { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: jodyImg },
+  { name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
+  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: "" },
 ];
 
 const AboutPage: FC = () => {
@@ -65,10 +69,17 @@ const AboutPage: FC = () => {
             return (
               <AnimatedSection key={member.name} delay={index * 0.1}>
                 <div className="glass-card text-center group hover:scale-105 transition-transform duration-300 hover:glow-amber">
-                  {/* Placeholder image area. Replace with actual member photos */}
-                  <div className="w-28 h-28 mx-auto mb-4 rounded-full bg-muted/50 flex items-center justify-center border border-border/50 group-hover:border-primary/50 transition-colors">
-                    <IconComponent className="w-10 h-10 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </div>
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-28 h-28 mx-auto mb-4 rounded-full object-cover border-2 border-primary/30"
+                    />
+                  ) : (
+                    <div className="w-28 h-28 mx-auto mb-4 rounded-full bg-muted/50 flex items-center justify-center border border-border/50 group-hover:border-primary/50 transition-colors">
+                      <IconComponent className="w-10 h-10 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                  )}
                   <h3 className="font-heading text-xl text-foreground mb-1">{member.name}</h3>
                   <p className="text-sm text-muted-foreground">{member.role}</p>
                 </div>
