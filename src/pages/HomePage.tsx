@@ -12,7 +12,7 @@ const HomePage: FC = () => {
   return (
     <Layout lightMode={isOutside ? "outside" : "inside"}>
       {/* Hero Section */}
-      <section className="min-h-[85vh] flex items-center justify-center px-4 relative overflow-hidden">
+      <section className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden">
         {/* Band photo background */}
         <div
           className="absolute inset-0 z-0"
