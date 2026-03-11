@@ -74,7 +74,21 @@ const HomePage: FC = () => {
             transition={{ delay: 0.6 }}
             className="mt-4"
           >
-            <p className="text-xs text-muted-foreground italic">Toggle to switch the vibe!</p>
+            <p className="text-xs text-muted-foreground italic mb-6">Toggle to switch the vibe!</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                to="/text-list"
+                className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] text-sm"
+              >
+                Join Our Text List
+              </Link>
+              <Link
+                to="/book-us"
+                className="px-6 py-3 rounded-lg border border-primary/50 text-primary font-medium hover:bg-primary/10 transition-all hover:scale-[1.02] active:scale-[0.98] text-sm"
+              >
+                Book Us for a Show
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
