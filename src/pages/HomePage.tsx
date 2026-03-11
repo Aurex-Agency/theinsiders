@@ -153,23 +153,10 @@ const HomePage: FC = () => {
         <p className="text-center text-muted-foreground mb-8">
           The latest updates from the band
         </p>
-        <div className="max-w-2xl mx-auto glass-panel rounded-xl overflow-hidden flex justify-center" style={{ padding: 0 }}>
-          {/* Mobile-sized embed */}
+        <div className="max-w-lg mx-auto glass-panel rounded-xl overflow-hidden flex justify-center" style={{ padding: 0 }}>
           <iframe
-            className="block sm:hidden"
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
-            style={{ border: "none", overflow: "hidden", width: "100%", maxWidth: "100%", display: "block" }}
-            height="500"
-            scrolling="no"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            title="The Insiders / The Outsiders Facebook Feed"
-          />
-          {/* Desktop-sized embed */}
-          <iframe
-            className="hidden sm:block"
             src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
-            style={{ border: "none", overflow: "hidden", width: "100%", maxWidth: "100%", display: "block" }}
+            style={{ border: "none", overflow: "hidden", width: 500, maxWidth: "100%", display: "block" }}
             height="600"
             scrolling="no"
             allowFullScreen
