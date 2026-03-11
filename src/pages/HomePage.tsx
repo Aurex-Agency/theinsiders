@@ -1,12 +1,21 @@
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ToggleLeft, ToggleRight, Calendar, Loader2 } from "lucide-react";
+import { ArrowRight, ToggleLeft, ToggleRight, Calendar, Loader2, Mic, Music, Headphones, Volume2, Disc3, AudioLines } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import ShowCard from "@/components/ShowCard";
 import { useShows } from "@/hooks/useShows";
 import bandHero from "@/assets/band-hero.jpg";
+
+const members = [
+  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: "" },
+  { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: "" },
+  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: "" },
+  { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: "" },
+  { name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
+  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: "" },
+];
 
 const HomePage: FC = () => {
   const { data: upcomingShows = [], isLoading } = useShows(3);
@@ -94,6 +103,47 @@ const HomePage: FC = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Meet the Band */}
+      <AnimatedSection className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl sm:text-4xl font-heading text-center text-gradient-gold mb-3">
+          Meet the Band
+        </h2>
+        <p className="text-center text-muted-foreground mb-8">
+          Six musicians. One unstoppable groove.
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+          {members.map((member, index) => {
+            const IconComponent = member.icon;
+            return (
+              <AnimatedSection key={member.name} delay={index * 0.08}>
+                <div className="glass-card text-center group hover:scale-105 transition-transform duration-300 py-5 px-3">
+                  {/* 
+                    MEMBER PHOTO PLACEHOLDER
+                    To add a photo: 
+                    1. Add the image to src/assets/ (e.g. src/assets/members/jock.jpg)
+                    2. Import it at the top of this file
+                    3. Set the image property in the members array above
+                  */}
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 rounded-full object-cover border-2 border-primary/30"
+                    />
+                  ) : (
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 rounded-full bg-muted/50 flex items-center justify-center border border-border/50 group-hover:border-primary/50 transition-colors">
+                      <IconComponent className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                  )}
+                  <h3 className="font-heading text-sm sm:text-base text-foreground mb-0.5">{member.name}</h3>
+                  <p className="text-[11px] sm:text-xs text-muted-foreground">{member.role}</p>
+                </div>
+              </AnimatedSection>
+            );
+          })}
+        </div>
+      </AnimatedSection>
 
       {/* Facebook Feed Section */}
       <AnimatedSection className="container mx-auto px-4 py-16">
