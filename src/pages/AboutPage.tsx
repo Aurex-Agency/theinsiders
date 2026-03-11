@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Mic, Music, Headphones, Volume2, Disc3, AudioLines } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import aboutBandImg from "@/assets/about-band.jpg";
 import jockImg from "@/assets/members/jock.jpg";
 import oliviaImg from "@/assets/members/olivia.jpg";
 import fredImg from "@/assets/members/fred.jpg";
