@@ -20,9 +20,9 @@ const Navbar: FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-border/50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
+        <Link to="/" className="flex items-center gap-2 group shrink-0">
           <Music className="w-7 h-7 text-primary transition-transform group-hover:rotate-12" />
-          <span className="font-heading text-xl text-primary">
+          <span className="font-heading text-base sm:text-xl text-primary truncate max-w-[180px] sm:max-w-none">
             The Insiders / The Outsiders
           </span>
         </Link>
