@@ -1,22 +1,21 @@
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ToggleLeft, ToggleRight, Calendar } from "lucide-react";
+import { ArrowRight, ToggleLeft, ToggleRight, Calendar, Loader2 } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import ShowCard from "@/components/ShowCard";
-import { getUpcomingShows } from "@/data/shows";
+import { useShows } from "@/hooks/useShows";
 import bandHero from "@/assets/band-hero.jpg";
 
 const HomePage: FC = () => {
-  const upcomingShows = getUpcomingShows(3);
+  const { data: upcomingShows = [], isLoading } = useShows(3);
   const [isOutside, setIsOutside] = useState(false);
 
   return (
     <Layout lightMode={isOutside ? "outside" : "inside"}>
       {/* Hero Section */}
       <section className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden">
-        {/* Band photo background */}
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -105,12 +104,6 @@ const HomePage: FC = () => {
           The latest updates from the band
         </p>
         <div className="max-w-lg mx-auto glass-panel rounded-xl overflow-hidden flex justify-center" style={{ padding: 0 }}>
-          {/* 
-            Facebook Page Plugin embed.
-            Update the href parameter below if the band gets a custom Facebook URL.
-            The plugin renders at the specified width then adapt_container_width
-            lets it scale within the container. Using width=340 for a good balance.
-          */}
           <iframe
             src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
             style={{ border: "none", overflow: "hidden", width: "100%", maxWidth: "100%", display: "block" }}
@@ -131,7 +124,11 @@ const HomePage: FC = () => {
         <p className="text-center text-muted-foreground mb-8">
           Catch us live, inside or out
         </p>
-        {upcomingShows.length > 0 ? (
+        {isLoading ? (
+          <div className="flex justify-center py-8">
+            <Loader2 className="w-6 h-6 animate-spin text-primary" />
+          </div>
+        ) : upcomingShows.length > 0 ? (
           <div className="max-w-2xl mx-auto space-y-3">
             {upcomingShows.map((show, index) => (
               <AnimatedSection key={show.date + show.venue} delay={index * 0.1}>

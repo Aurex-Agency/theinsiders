@@ -25,10 +25,12 @@ const ShowCard: FC<ShowCardProps> = ({ show }) => {
       <div className="flex-1 min-w-0">
         <h3 className="font-heading text-foreground text-sm sm:text-base truncate">{show.venue}</h3>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-muted-foreground mt-0.5">
-          <span className="flex items-center gap-1">
-            <MapPin className="w-3 h-3" />
-            {show.location}
-          </span>
+          {show.location && show.location !== "TBA" && (
+            <span className="flex items-center gap-1">
+              <MapPin className="w-3 h-3" />
+              {show.location}
+            </span>
+          )}
           <span className="flex items-center gap-1">
             <Clock className="w-3 h-3" />
             {weekday}, {show.time}
