@@ -29,28 +29,37 @@ const AboutPage: FC = () => {
           </h1>
         </AnimatedSection>
 
-        <AnimatedSection className="max-w-3xl mx-auto glass-card space-y-6 text-foreground/90 leading-relaxed">
-          <p>
-            Individually, they have decades of experience playing across Mississippi, Tennessee,
-            Alabama, Florida, and beyond. Together, they have decided to join forces and create
-            something special. Born from a shared love of Jazz, Rock, Soul, and everything in
-            between, The Insiders (or The Outsiders, depending on the venue) are six musicians
-            who prove that when seasoned talent meets raw passion, magic happens.
-          </p>
-          <p>
-            From smoky jazz clubs to sun-drenched outdoor festivals, this band brings an
-            electrifying energy that gets audiences on their feet. Their setlist spans generations
-            and genres, seamlessly weaving together classic soul grooves, bluesy rock anthems,
-            smooth jazz standards, and funky jams that keep the dance floor packed all night long.
-            Whether it's an intimate indoor lounge set or a wide-open outdoor concert, The
-            Insiders / The Outsiders adapt their sound to fit the moment while never losing the
-            fire that makes them unforgettable.
-          </p>
-          <p>
-            Available for private events, weddings, corporate gatherings, festivals, bar and
-            restaurant gigs, and everything in between. If you've got a stage (indoors or out),
-            they've got the music. Get in touch and let's make your next event one to remember.
-          </p>
+        <AnimatedSection className="max-w-5xl mx-auto glass-card">
+          <div className="flex flex-col lg:flex-row gap-8 items-center">
+            <img
+              src={aboutBandImg}
+              alt="The Insiders / The Outsiders band illustration"
+              className="w-full max-w-xs lg:max-w-sm rounded-xl shrink-0"
+            />
+            <div className="space-y-6 text-foreground/90 leading-relaxed">
+              <p>
+                Individually, they have decades of experience playing across Mississippi, Tennessee,
+                Alabama, Florida, and beyond. Together, they have decided to join forces and create
+                something special. Born from a shared love of Jazz, Rock, Soul, and everything in
+                between, The Insiders (or The Outsiders, depending on the venue) are six musicians
+                who prove that when seasoned talent meets raw passion, magic happens.
+              </p>
+              <p>
+                From smoky jazz clubs to sun-drenched outdoor festivals, this band brings an
+                electrifying energy that gets audiences on their feet. Their setlist spans generations
+                and genres, seamlessly weaving together classic soul grooves, bluesy rock anthems,
+                smooth jazz standards, and funky jams that keep the dance floor packed all night long.
+                Whether it's an intimate indoor lounge set or a wide-open outdoor concert, The
+                Insiders / The Outsiders adapt their sound to fit the moment while never losing the
+                fire that makes them unforgettable.
+              </p>
+              <p>
+                Available for private events, weddings, corporate gatherings, festivals, bar and
+                restaurant gigs, and everything in between. If you've got a stage (indoors or out),
+                they've got the music. Get in touch and let's make your next event one to remember.
+              </p>
+            </div>
+          </div>
         </AnimatedSection>
       </section>
 
