@@ -2,14 +2,18 @@ import { FC } from "react";
 import { Mic, Music, Headphones, Volume2, Disc3, AudioLines } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import jockImg from "@/assets/members/jock.jpg";
+import oliviaImg from "@/assets/members/olivia.jpg";
+import fredImg from "@/assets/members/fred.jpg";
+import jodyImg from "@/assets/members/jody.jpg";
 
 const members = [
-  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music },
-  { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic },
-  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines },
-  { name: "Jody Lacky", role: "Saxophone", icon: Volume2 },
-  { name: "Bill Wilson", role: "Drums", icon: Disc3 },
-  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones },
+  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },
+  { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: oliviaImg },
+  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: fredImg },
+  { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: jodyImg },
+  { name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
+  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: "" },
 ];
 
 const AboutPage: FC = () => {
