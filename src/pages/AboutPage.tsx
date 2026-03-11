@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Guitar, Mic, Music, Piano, Drum } from "lucide-react";
+import { Mic, Music, Headphones, Volume2, Disc3, AudioLines } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 
