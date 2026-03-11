@@ -22,7 +22,7 @@ const Navbar: FC = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group shrink-0">
           <Music className="w-7 h-7 text-primary transition-transform group-hover:rotate-12" />
-          <span className="font-heading text-base sm:text-xl text-primary truncate max-w-[180px] sm:max-w-none">
+          <span className="font-heading text-sm sm:text-xl text-primary leading-tight sm:truncate sm:max-w-none">
             The Insiders / The Outsiders
           </span>
         </Link>
