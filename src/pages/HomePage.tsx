@@ -9,6 +9,7 @@ import { getUpcomingShows } from "@/data/shows";
 import bandHero from "@/assets/band-hero.jpg";
 
 const HomePage: FC = () => {
+  const upcomingShows = getUpcomingShows(3);
   const [isOutside, setIsOutside] = useState(false);
 
   return (
