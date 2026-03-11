@@ -25,7 +25,7 @@ const HomePage: FC = () => {
             WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
           }}
         />
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
