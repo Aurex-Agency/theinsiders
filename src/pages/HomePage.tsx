@@ -12,7 +12,19 @@ const HomePage: FC = () => {
   return (
     <Layout lightMode={isOutside ? "outside" : "inside"}>
       {/* Hero Section */}
-      <section className="min-h-[85vh] flex items-center justify-center px-4">
+      <section className="min-h-[85vh] flex items-center justify-center px-4 relative overflow-hidden">
+        {/* Band photo background */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${bandHero})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center 30%",
+            opacity: 0.25,
+            maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+          }}
+        />
         <div className="text-center max-w-4xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
