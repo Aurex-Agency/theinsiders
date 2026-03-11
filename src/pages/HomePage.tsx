@@ -4,9 +4,12 @@ import { motion } from "framer-motion";
 import { ArrowRight, ToggleLeft, ToggleRight, Calendar } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import ShowCard from "@/components/ShowCard";
+import { getUpcomingShows } from "@/data/shows";
 import bandHero from "@/assets/band-hero.jpg";
 
 const HomePage: FC = () => {
+  const upcomingShows = getUpcomingShows(3);
   const [isOutside, setIsOutside] = useState(false);
 
   return (
@@ -128,19 +131,19 @@ const HomePage: FC = () => {
         <p className="text-center text-muted-foreground mb-8">
           Catch us live, inside or out
         </p>
-        <div className="max-w-2xl mx-auto glass-card overflow-hidden">
-          {/*
-            Google Calendar embed showing upcoming events in agenda view.
-            The calendar oliviasings2@gmail.com must be set to public for this to display.
-          */}
-          <iframe
-            src="https://calendar.google.com/calendar/embed?src=oliviasings2%40gmail.com&ctz=America/Chicago&mode=AGENDA&showTitle=0&showNav=0&showPrint=0&showCalendars=0&showTabs=0&height=300"
-            width="100%"
-            height="300"
-            style={{ border: "none" }}
-            title="Upcoming Shows Calendar"
-          />
-        </div>
+        {upcomingShows.length > 0 ? (
+          <div className="max-w-2xl mx-auto space-y-3">
+            {upcomingShows.map((show, index) => (
+              <AnimatedSection key={show.date + show.venue} delay={index * 0.1}>
+                <ShowCard show={show} />
+              </AnimatedSection>
+            ))}
+          </div>
+        ) : (
+          <div className="max-w-2xl mx-auto glass-card text-center">
+            <p className="text-muted-foreground">No upcoming shows scheduled yet. Check back soon!</p>
+          </div>
+        )}
         <div className="text-center mt-6">
           <Link
             to="/shows"
