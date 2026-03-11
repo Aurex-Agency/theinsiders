@@ -1,10 +1,14 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import ShowCard from "@/components/ShowCard";
+import { useShows } from "@/hooks/useShows";
 
 const ShowsPage: FC = () => {
+  const { data: shows = [], isLoading } = useShows();
+
   return (
     <Layout>
       <section className="container mx-auto px-4 py-16">
@@ -17,23 +21,25 @@ const ShowsPage: FC = () => {
           </p>
         </AnimatedSection>
 
-        <AnimatedSection className="max-w-4xl mx-auto glass-card overflow-hidden">
-          {/*
-            Google Calendar embed in agenda view.
-            Calendar: oliviasings2@gmail.com
-            IMPORTANT: The calendar must be set to public in Google Calendar settings for it to display.
-            To do this: Google Calendar > Settings > Settings for "oliviasings2@gmail.com" calendar > 
-            Access permissions > Make available to public.
-            Replace src below if the calendar ID changes.
-          */}
-          <iframe
-            src="https://calendar.google.com/calendar/embed?src=oliviasings2%40gmail.com&ctz=America/Chicago&mode=AGENDA&showTitle=0&showPrint=0&showCalendars=0&showTabs=0"
-            width="100%"
-            height="600"
-            style={{ border: "none" }}
-            title="The Insiders / The Outsiders Show Calendar"
-          />
-        </AnimatedSection>
+        <div className="max-w-2xl mx-auto">
+          {isLoading ? (
+            <div className="flex justify-center py-12">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : shows.length > 0 ? (
+            <div className="space-y-3">
+              {shows.map((show, index) => (
+                <AnimatedSection key={show.date + show.venue} delay={index * 0.08}>
+                  <ShowCard show={show} />
+                </AnimatedSection>
+              ))}
+            </div>
+          ) : (
+            <div className="glass-card text-center">
+              <p className="text-muted-foreground">No upcoming shows scheduled yet. Check back soon!</p>
+            </div>
+          )}
+        </div>
 
         <AnimatedSection className="text-center mt-10">
           <p className="text-muted-foreground mb-4">
