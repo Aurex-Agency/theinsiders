@@ -11,6 +11,7 @@ import jockImg from "@/assets/members/jock.jpg";
 import oliviaImg from "@/assets/members/olivia.jpg";
 import fredImg from "@/assets/members/fred.jpg";
 import jodyImg from "@/assets/members/jody.jpg";
+import terryImg from "@/assets/members/terry.jpg";
 
 const members = [
   { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },
@@ -18,7 +19,7 @@ const members = [
   { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: fredImg },
   { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: jodyImg },
   { name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
-  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: "" },
+  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: terryImg },
 ];
 
 const HomePage: FC = () => {
