@@ -12,6 +12,21 @@ import oliviaImg from "@/assets/members/olivia.jpg";
 import fredImg from "@/assets/members/fred.jpg";
 import jodyImg from "@/assets/members/jody.jpg";
 import terryImg from "@/assets/members/terry.jpg";
+import galleryPhoto1 from "@/assets/gallery/photo1.jpg";
+import galleryPhoto2 from "@/assets/gallery/photo2.jpg";
+import galleryPhoto3 from "@/assets/gallery/photo3.jpg";
+import galleryPhoto4 from "@/assets/gallery/photo4.jpg";
+import galleryPhoto5 from "@/assets/gallery/photo5.jpg";
+import galleryPhoto6 from "@/assets/gallery/photo6.jpg";
+
+const galleryPhotos = [
+  { src: galleryPhoto1, alt: "The band performing live on stage" },
+  { src: galleryPhoto2, alt: "Terry and Jock jamming together" },
+  { src: galleryPhoto3, alt: "Olivia and Terry performing" },
+  { src: galleryPhoto4, alt: "Full band on stage with crowd" },
+  { src: galleryPhoto5, alt: "The Outsiders at Dudie's Burger Festival" },
+  { src: galleryPhoto6, alt: "Jock and Terry on stage at Coopers" },
+];
 
 const members = [
   { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },
