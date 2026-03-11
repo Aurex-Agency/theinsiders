@@ -8,6 +8,15 @@ import ShowCard from "@/components/ShowCard";
 import { useShows } from "@/hooks/useShows";
 import bandHero from "@/assets/band-hero.jpg";
 
+const members = [
+  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: "" },
+  { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: "" },
+  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: "" },
+  { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: "" },
+  { name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
+  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: "" },
+];
+
 const HomePage: FC = () => {
   const { data: upcomingShows = [], isLoading } = useShows(3);
   const [isOutside, setIsOutside] = useState(false);
