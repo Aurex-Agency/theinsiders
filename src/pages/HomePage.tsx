@@ -116,32 +116,27 @@ const HomePage: FC = () => {
         <p className="text-center text-muted-foreground mb-8">
           Six musicians. One unstoppable groove.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {members.map((member, index) => {
             const IconComponent = member.icon;
             return (
               <AnimatedSection key={member.name} delay={index * 0.08}>
-                <div className="glass-card text-center group hover:scale-105 transition-transform duration-300 py-5 px-3">
-                  {/* 
-                    MEMBER PHOTO PLACEHOLDER
-                    To add a photo: 
-                    1. Add the image to src/assets/ (e.g. src/assets/members/jock.jpg)
-                    2. Import it at the top of this file
-                    3. Set the image property in the members array above
-                  */}
+                <div className="glass-card text-center group hover:scale-105 transition-transform duration-300 p-0 overflow-hidden">
                   {member.image ? (
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 rounded-full object-cover border-2 border-primary/30"
+                      className="w-full aspect-[3/4] object-cover"
                     />
                   ) : (
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 rounded-full bg-muted/50 flex items-center justify-center border border-border/50 group-hover:border-primary/50 transition-colors">
-                      <IconComponent className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <div className="w-full aspect-[3/4] bg-muted/50 flex items-center justify-center">
+                      <IconComponent className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
                   )}
-                  <h3 className="font-heading text-sm sm:text-base text-foreground mb-0.5">{member.name}</h3>
-                  <p className="text-[11px] sm:text-xs text-muted-foreground">{member.role}</p>
+                  <div className="p-3">
+                    <h3 className="font-heading text-sm sm:text-base text-foreground mb-0.5">{member.name}</h3>
+                    <p className="text-[11px] sm:text-xs text-muted-foreground">{member.role}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             );

@@ -68,20 +68,22 @@ const AboutPage: FC = () => {
             const IconComponent = member.icon;
             return (
               <AnimatedSection key={member.name} delay={index * 0.1}>
-                <div className="glass-card text-center group hover:scale-105 transition-transform duration-300 hover:glow-amber">
+                <div className="glass-card text-center group hover:scale-105 transition-transform duration-300 hover:glow-amber p-0 overflow-hidden">
                   {member.image ? (
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-28 h-28 mx-auto mb-4 rounded-full object-cover border-2 border-primary/30"
+                      className="w-full aspect-[3/4] object-cover"
                     />
                   ) : (
-                    <div className="w-28 h-28 mx-auto mb-4 rounded-full bg-muted/50 flex items-center justify-center border border-border/50 group-hover:border-primary/50 transition-colors">
-                      <IconComponent className="w-10 h-10 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <div className="w-full aspect-[3/4] bg-muted/50 flex items-center justify-center">
+                      <IconComponent className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
                   )}
-                  <h3 className="font-heading text-xl text-foreground mb-1">{member.name}</h3>
-                  <p className="text-sm text-muted-foreground">{member.role}</p>
+                  <div className="p-4">
+                    <h3 className="font-heading text-xl text-foreground mb-1">{member.name}</h3>
+                    <p className="text-sm text-muted-foreground">{member.role}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             );
