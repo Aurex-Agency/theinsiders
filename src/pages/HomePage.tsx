@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ToggleLeft, ToggleRight, Calendar } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import bandHero from "@/assets/band-hero.jpg";
 
 const HomePage: FC = () => {
   const [isOutside, setIsOutside] = useState(false);
