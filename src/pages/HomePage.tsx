@@ -168,7 +168,7 @@ const HomePage: FC = () => {
         <p className="text-center text-muted-foreground mb-8">
           Whether we're inside or outside, we always look good doing it.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto">
           {galleryPhotos.map((photo, index) => (
             <AnimatedSection key={index} delay={index * 0.08}>
               <div className="glass-card p-0 overflow-hidden rounded-xl group hover:scale-105 transition-transform duration-300">
