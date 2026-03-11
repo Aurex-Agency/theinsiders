@@ -160,6 +160,39 @@ const HomePage: FC = () => {
         </div>
       </AnimatedSection>
 
+      {/* Photo Gallery Preview */}
+      <AnimatedSection className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl sm:text-4xl font-heading text-center text-gradient-gold mb-3">
+          Snapshots from the Stage
+        </h2>
+        <p className="text-center text-muted-foreground mb-8">
+          Whether we're inside or outside, we always look good doing it.
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-4xl mx-auto">
+          {galleryPhotos.map((photo, index) => (
+            <AnimatedSection key={index} delay={index * 0.08}>
+              <div className="glass-card p-0 overflow-hidden rounded-xl group hover:scale-105 transition-transform duration-300">
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full aspect-[4/3] object-cover"
+                />
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <div className="text-center mt-6">
+          <Link
+            to="/photos"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
+          >
+            <Camera className="w-4 h-4" />
+            See All Photos
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </AnimatedSection>
+
       {/* Facebook Feed Section */}
       <AnimatedSection className="container mx-auto px-4 py-16">
         <h2 className="text-3xl sm:text-4xl font-heading text-center text-gradient-gold mb-3">
