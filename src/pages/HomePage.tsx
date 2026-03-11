@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, ToggleLeft, ToggleRight, Calendar } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import ShowCard from "@/components/ShowCard";
+import { getUpcomingShows } from "@/data/shows";
 import bandHero from "@/assets/band-hero.jpg";
 
 const HomePage: FC = () => {
