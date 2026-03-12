@@ -37,7 +37,7 @@ const AboutPage: FC = () => {
               className="w-full max-w-xs lg:max-w-sm rounded-xl shrink-0" />
             
             <div className="space-y-6 text-foreground/90 leading-relaxed">
-              <p>Individually, they have decades of experience playing across Mississippi, Tennessee, Alabama, Florida, and beyond. Together, they have decided to join forces and create something special. Born from a shared love of Classic Rock, Americana, Blues, Jazz, Rock, Soul, and everything in between, The Insiders (or The Outsiders, depending on the venue) are six musicians who prove that when seasoned talent meets raw passion, magic happens.
+              <p>Individually, they have decades of experience playing across Mississippi, Tennessee, Alabama, Florida, and beyond. Together, they have decided to join forces and create something special. Born from a shared love of Classic Rock,Jazz, Rock, Soul, and everything in between, The Insiders (or The Outsiders, depending on the venue) are six musicians who prove that when seasoned talent meets raw passion, magic happens.
 
 
 
