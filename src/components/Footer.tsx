@@ -16,7 +16,7 @@ const Footer: FC = () => {
               </span>
             </div>
             <p className="text-muted-foreground text-sm">
-              Jazz. Rock. Soul. Whatever the venue, we bring the groove.
+              Classic Rock. Blues. Rock. Soul. Americana. Jazz, and More! Whatever the venue, we bring the groove.
             </p>
           </div>
 
