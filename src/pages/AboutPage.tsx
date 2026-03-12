@@ -8,6 +8,7 @@ import oliviaImg from "@/assets/members/olivia.jpg";
 import fredImg from "@/assets/members/fred.jpg";
 import jodyImg from "@/assets/members/jody.jpg";
 import terryImg from "@/assets/members/terry.jpg";
+import billImg from "@/assets/members/bill.jpg";
 
 const members = [
 { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },
