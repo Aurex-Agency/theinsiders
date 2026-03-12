@@ -12,6 +12,7 @@ import oliviaImg from "@/assets/members/olivia.jpg";
 import fredImg from "@/assets/members/fred.jpg";
 import jodyImg from "@/assets/members/jody.jpg";
 import terryImg from "@/assets/members/terry.jpg";
+import billImg from "@/assets/members/bill.jpg";
 import galleryPhoto1 from "@/assets/gallery/photo1.jpg";
 import galleryPhoto2 from "@/assets/gallery/photo2.jpg";
 import galleryPhoto3 from "@/assets/gallery/photo3.jpg";
@@ -33,7 +34,7 @@ const members = [
   { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: oliviaImg },
   { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: fredImg },
   { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: jodyImg },
-  { name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
+  { name: "Bill Wilson", role: "Drums", icon: Disc3, image: billImg },
   { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: terryImg },
 ];
 
