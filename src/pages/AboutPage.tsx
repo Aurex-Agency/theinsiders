@@ -10,13 +10,13 @@ import jodyImg from "@/assets/members/jody.jpg";
 import terryImg from "@/assets/members/terry.jpg";
 
 const members = [
-  { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },
-  { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: oliviaImg },
-  { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: fredImg },
-  { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: jodyImg },
-  { name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
-  { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: terryImg },
-];
+{ name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },
+{ name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: oliviaImg },
+{ name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: fredImg },
+{ name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: jodyImg },
+{ name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
+{ name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: terryImg }];
+
 
 const AboutPage: FC = () => {
   return (
@@ -34,24 +34,24 @@ const AboutPage: FC = () => {
             <img
               src={aboutBandImg}
               alt="The Insiders / The Outsiders band illustration"
-              className="w-full max-w-xs lg:max-w-sm rounded-xl shrink-0"
-            />
+              className="w-full max-w-xs lg:max-w-sm rounded-xl shrink-0" />
+            
             <div className="space-y-6 text-foreground/90 leading-relaxed">
-              <p>
-                Individually, they have decades of experience playing across Mississippi, Tennessee,
-                Alabama, Florida, and beyond. Together, they have decided to join forces and create
-                something special. Born from a shared love of Jazz, Rock, Soul, and everything in
-                between, The Insiders (or The Outsiders, depending on the venue) are six musicians
-                who prove that when seasoned talent meets raw passion, magic happens.
+              <p>Individually, they have decades of experience playing across Mississippi, Tennessee, Alabama, Florida, and beyond. Together, they have decided to join forces and create something special. Born from a shared love of Classic Rock, Americana, Blues, Jazz, Rock, Soul, and everything in between, The Insiders (or The Outsiders, depending on the venue) are six musicians who prove that when seasoned talent meets raw passion, magic happens.
+
+
+
+
+
               </p>
-              <p>
-                From smoky jazz clubs to sun-drenched outdoor festivals, this band brings an
-                electrifying energy that gets audiences on their feet. Their setlist spans generations
-                and genres, seamlessly weaving together classic soul grooves, bluesy rock anthems,
-                smooth jazz standards, and funky jams that keep the dance floor packed all night long.
-                Whether it's an intimate indoor lounge set or a wide-open outdoor concert, The
-                Insiders / The Outsiders adapt their sound to fit the moment while never losing the
-                fire that makes them unforgettable.
+              <p>From smoky blues clubs to sun-drenched outdoor festivals, this band brings an electrifying energy that gets audiences on their feet. Their setlist spans generations and genres, seamlessly weaving together classic soul grooves, bluesy rock anthems, smooth jazz standards, and funky jams that keep the dance floor packed all night long. Whether it's an intimate indoor lounge set or a wide-open outdoor concert, The Insiders / The Outsiders adapt their sound to fit the moment while never losing the fire that makes them unforgettable.
+
+
+
+
+
+
+
               </p>
               <p>
                 Available for private events, weddings, corporate gatherings, festivals, bar and
@@ -80,29 +80,29 @@ const AboutPage: FC = () => {
             return (
               <AnimatedSection key={member.name} delay={index * 0.1}>
                 <div className="glass-card text-center group hover:scale-105 transition-transform duration-300 hover:glow-amber p-0 overflow-hidden">
-                  {member.image ? (
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full aspect-[3/4] object-cover"
-                    />
-                  ) : (
-                    <div className="w-full aspect-[3/4] bg-muted/50 flex items-center justify-center">
+                  {member.image ?
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full aspect-[3/4] object-cover" /> :
+
+
+                  <div className="w-full aspect-[3/4] bg-muted/50 flex items-center justify-center">
                       <IconComponent className="w-12 h-12 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
-                  )}
+                  }
                   <div className="p-4">
                     <h3 className="font-heading text-xl text-foreground mb-1">{member.name}</h3>
                     <p className="text-sm text-muted-foreground">{member.role}</p>
                   </div>
                 </div>
-              </AnimatedSection>
-            );
+              </AnimatedSection>);
+
           })}
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>);
+
 };
 
 export default AboutPage;
