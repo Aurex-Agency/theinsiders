@@ -15,7 +15,7 @@ const members = [
 { name: "Olivia Christensen", role: "Lead Vocals", icon: Mic, image: oliviaImg },
 { name: "Fred Calmes", role: "Bass & Vocals", icon: AudioLines, image: fredImg },
 { name: "Jody Lacky", role: "Saxophone", icon: Volume2, image: jodyImg },
-{ name: "Bill Wilson", role: "Drums", icon: Disc3, image: "" },
+{ name: "Bill Wilson", role: "Drums", icon: Disc3, image: billImg },
 { name: "Terry Morgan", role: "Keyboard & Vocals", icon: Headphones, image: terryImg }];
 
 
