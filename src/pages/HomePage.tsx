@@ -46,17 +46,25 @@ const HomePage: FC = () => {
     <Layout lightMode={isOutside ? "outside" : "inside"}>
       {/* Hero Section */}
       <section className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${bandHero})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center 30%",
-            opacity: 0.25,
-            maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
-          }}
-        />
+        {/* Video background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover"
+            style={{
+              opacity: 0.25,
+              maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+            }}
+            poster={bandHero}
+          >
+            <source src="https://joorommxxorctcjssegc.supabase.co/storage/v1/object/public/videos/hero-bg.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="text-center max-w-4xl mx-auto relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
