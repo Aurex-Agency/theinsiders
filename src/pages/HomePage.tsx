@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ToggleLeft, ToggleRight, Calendar, Loader2, Mic, Music, Headphones, Volume2, Disc3, AudioLines, Camera } from "lucide-react";
@@ -7,6 +7,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import ShowCard from "@/components/ShowCard";
 import { useShows } from "@/hooks/useShows";
 import bandHero from "@/assets/band-hero.webp";
+import bandHeroMobile from "@/assets/band-hero-mobile.webp";
 import jockImg from "@/assets/members/jock.webp";
 import oliviaImg from "@/assets/members/olivia.webp";
 import fredImg from "@/assets/members/fred.webp";
