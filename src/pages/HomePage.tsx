@@ -53,10 +53,11 @@ const HomePage: FC = () => {
     const slowNet = connection?.effectiveType && /2g|3g/.test(connection.effectiveType);
     if (!isDesktop || saveData || slowNet) return;
 
+    const w = window as any;
     const idle = (cb: () => void) =>
-      "requestIdleCallback" in window
-        ? (window as any).requestIdleCallback(cb, { timeout: 2000 })
-        : window.setTimeout(cb, 1200);
+      "requestIdleCallback" in w
+        ? w.requestIdleCallback(cb, { timeout: 2000 })
+        : w.setTimeout(cb, 1200);
     idle(() => setShowVideo(true));
   }, []);
 
