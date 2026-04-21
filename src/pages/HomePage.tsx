@@ -44,6 +44,8 @@ const HomePage: FC = () => {
   const [isOutside, setIsOutside] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [showFacebook, setShowFacebook] = useState(false);
+  const facebookRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     // Only load the hero video on larger screens and after initial paint,
@@ -63,21 +65,51 @@ const HomePage: FC = () => {
     idle(() => setShowVideo(true));
   }, []);
 
+  // Lazy-mount the Facebook iframes only when scrolled near them.
+  // The Facebook plugin pulls hundreds of KB of JS that would block mobile load.
+  useEffect(() => {
+    const el = facebookRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setShowFacebook(true);
+      return;
+    }
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShowFacebook(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: "400px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <Layout lightMode={isOutside ? "outside" : "inside"}>
       {/* Hero Section */}
-      <section
-        className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden"
-        style={
-          videoReady
-            ? undefined
-            : {
-                backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.6) 50%, hsl(var(--background)) 100%), url(${bandHero})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }
-        }
-      >
+      <section className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden">
+        {/* Hero background image: tiny mobile variant on small screens, full on desktop.
+            Rendered as a real <img> so the browser uses srcset and fetchpriority for fast paint. */}
+        <img
+          src={bandHeroMobile}
+          srcSet={`${bandHeroMobile} 768w, ${bandHero} 1600w`}
+          sizes="100vw"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-500"
+          style={{ opacity: videoReady ? 0 : 1 }}
+        />
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, hsl(var(--background) / 0.6) 50%, hsl(var(--background)) 100%)",
+          }}
+        />
         {/* Video background (desktop, deferred) */}
         {showVideo && (
           <div className="absolute inset-0 z-0">
