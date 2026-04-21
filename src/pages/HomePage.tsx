@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ToggleLeft, ToggleRight, Calendar, Loader2, Mic, Music, Headphones, Volume2, Disc3, AudioLines, Camera } from "lucide-react";
@@ -41,30 +41,57 @@ const members = [
 const HomePage: FC = () => {
   const { data: upcomingShows = [], isLoading } = useShows(3);
   const [isOutside, setIsOutside] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    // Only load the hero video on larger screens and after initial paint,
+    // so mobile users get the poster image instantly without a black flash.
+    if (typeof window === "undefined") return;
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const connection = (navigator as any).connection;
+    const saveData = connection?.saveData;
+    const slowNet = connection?.effectiveType && /2g|3g/.test(connection.effectiveType);
+    if (!isDesktop || saveData || slowNet) return;
+
+    const w = window as any;
+    const idle = (cb: () => void) =>
+      "requestIdleCallback" in w
+        ? w.requestIdleCallback(cb, { timeout: 2000 })
+        : w.setTimeout(cb, 1200);
+    idle(() => setShowVideo(true));
+  }, []);
 
   return (
     <Layout lightMode={isOutside ? "outside" : "inside"}>
       {/* Hero Section */}
-      <section className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden">
-        {/* Video background */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            className="w-full h-full object-cover"
-            style={{
-              opacity: 0.25,
-              maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
-            }}
-            poster={bandHero}
-          >
-            <source src="https://joorommxxorctcjssegc.supabase.co/storage/v1/object/public/videos/hero-bg.mp4" type="video/mp4" />
-          </video>
-        </div>
+      <section
+        className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.6) 50%, hsl(var(--background)) 100%), url(${bandHero})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Video background (desktop, deferred) */}
+        {showVideo && (
+          <div className="absolute inset-0 z-0">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              className="w-full h-full object-cover"
+              style={{
+                opacity: 0.25,
+                maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+              }}
+            >
+              <source src="https://joorommxxorctcjssegc.supabase.co/storage/v1/object/public/videos/hero-bg.mp4" type="video/mp4" />
+            </video>
+          </div>
+        )}
         <div className="text-center max-w-4xl mx-auto relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
