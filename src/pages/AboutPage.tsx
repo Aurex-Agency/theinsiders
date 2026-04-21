@@ -2,13 +2,13 @@ import { FC } from "react";
 import { Mic, Music, Headphones, Volume2, Disc3, AudioLines } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
-import aboutBandImg from "@/assets/about-band.jpg";
-import jockImg from "@/assets/members/jock.jpg";
-import oliviaImg from "@/assets/members/olivia.jpg";
-import fredImg from "@/assets/members/fred.jpg";
-import jodyImg from "@/assets/members/jody.jpg";
-import terryImg from "@/assets/members/terry.jpg";
-import billImg from "@/assets/members/bill.jpg";
+import aboutBandImg from "@/assets/about-band.webp";
+import jockImg from "@/assets/members/jock.webp";
+import oliviaImg from "@/assets/members/olivia.webp";
+import fredImg from "@/assets/members/fred.webp";
+import jodyImg from "@/assets/members/jody.webp";
+import terryImg from "@/assets/members/terry.webp";
+import billImg from "@/assets/members/bill.webp";
 
 const members = [
 { name: "Jock Adams", role: "Lead Guitar & Vocals", icon: Music, image: jockImg },

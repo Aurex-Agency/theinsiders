@@ -3,12 +3,12 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
-import galleryPhoto1 from "@/assets/gallery/photo1.jpg";
-import galleryPhoto2 from "@/assets/gallery/photo2.jpg";
-import galleryPhoto3 from "@/assets/gallery/photo3.jpg";
-import galleryPhoto4 from "@/assets/gallery/photo4.jpg";
-import galleryPhoto5 from "@/assets/gallery/photo5.jpg";
-import galleryPhoto6 from "@/assets/gallery/photo6.jpg";
+import galleryPhoto1 from "@/assets/gallery/photo1.webp";
+import galleryPhoto2 from "@/assets/gallery/photo2.webp";
+import galleryPhoto3 from "@/assets/gallery/photo3.webp";
+import galleryPhoto4 from "@/assets/gallery/photo4.webp";
+import galleryPhoto5 from "@/assets/gallery/photo5.webp";
+import galleryPhoto6 from "@/assets/gallery/photo6.webp";
 
 const photos = [
   { src: galleryPhoto1, alt: "The band performing live on stage" },

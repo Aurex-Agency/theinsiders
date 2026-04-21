@@ -6,19 +6,19 @@ import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import ShowCard from "@/components/ShowCard";
 import { useShows } from "@/hooks/useShows";
-import bandHero from "@/assets/band-hero.jpg";
-import jockImg from "@/assets/members/jock.jpg";
-import oliviaImg from "@/assets/members/olivia.jpg";
-import fredImg from "@/assets/members/fred.jpg";
-import jodyImg from "@/assets/members/jody.jpg";
-import terryImg from "@/assets/members/terry.jpg";
-import billImg from "@/assets/members/bill.jpg";
-import galleryPhoto1 from "@/assets/gallery/photo1.jpg";
-import galleryPhoto2 from "@/assets/gallery/photo2.jpg";
-import galleryPhoto3 from "@/assets/gallery/photo3.jpg";
-import galleryPhoto4 from "@/assets/gallery/photo4.jpg";
-import galleryPhoto5 from "@/assets/gallery/photo5.jpg";
-import galleryPhoto6 from "@/assets/gallery/photo6.jpg";
+import bandHero from "@/assets/band-hero.webp";
+import jockImg from "@/assets/members/jock.webp";
+import oliviaImg from "@/assets/members/olivia.webp";
+import fredImg from "@/assets/members/fred.webp";
+import jodyImg from "@/assets/members/jody.webp";
+import terryImg from "@/assets/members/terry.webp";
+import billImg from "@/assets/members/bill.webp";
+import galleryPhoto1 from "@/assets/gallery/photo1.webp";
+import galleryPhoto2 from "@/assets/gallery/photo2.webp";
+import galleryPhoto3 from "@/assets/gallery/photo3.webp";
+import galleryPhoto4 from "@/assets/gallery/photo4.webp";
+import galleryPhoto5 from "@/assets/gallery/photo5.webp";
+import galleryPhoto6 from "@/assets/gallery/photo6.webp";
 
 const galleryPhotos = [
   { src: galleryPhoto1, alt: "The band performing live on stage" },
