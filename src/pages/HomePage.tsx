@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ToggleLeft, ToggleRight, Calendar, Loader2, Mic, Music, Headphones, Volume2, Disc3, AudioLines, Camera } from "lucide-react";
@@ -6,19 +6,20 @@ import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import ShowCard from "@/components/ShowCard";
 import { useShows } from "@/hooks/useShows";
-import bandHero from "@/assets/band-hero.jpg";
-import jockImg from "@/assets/members/jock.jpg";
-import oliviaImg from "@/assets/members/olivia.jpg";
-import fredImg from "@/assets/members/fred.jpg";
-import jodyImg from "@/assets/members/jody.jpg";
-import terryImg from "@/assets/members/terry.jpg";
-import billImg from "@/assets/members/bill.jpg";
-import galleryPhoto1 from "@/assets/gallery/photo1.jpg";
-import galleryPhoto2 from "@/assets/gallery/photo2.jpg";
-import galleryPhoto3 from "@/assets/gallery/photo3.jpg";
-import galleryPhoto4 from "@/assets/gallery/photo4.jpg";
-import galleryPhoto5 from "@/assets/gallery/photo5.jpg";
-import galleryPhoto6 from "@/assets/gallery/photo6.jpg";
+import bandHero from "@/assets/band-hero.webp";
+import bandHeroMobile from "@/assets/band-hero-mobile.webp";
+import jockImg from "@/assets/members/jock.webp";
+import oliviaImg from "@/assets/members/olivia.webp";
+import fredImg from "@/assets/members/fred.webp";
+import jodyImg from "@/assets/members/jody.webp";
+import terryImg from "@/assets/members/terry.webp";
+import billImg from "@/assets/members/bill.webp";
+import galleryPhoto1 from "@/assets/gallery/photo1.webp";
+import galleryPhoto2 from "@/assets/gallery/photo2.webp";
+import galleryPhoto3 from "@/assets/gallery/photo3.webp";
+import galleryPhoto4 from "@/assets/gallery/photo4.webp";
+import galleryPhoto5 from "@/assets/gallery/photo5.webp";
+import galleryPhoto6 from "@/assets/gallery/photo6.webp";
 
 const galleryPhotos = [
   { src: galleryPhoto1, alt: "The band performing live on stage" },
@@ -43,6 +44,8 @@ const HomePage: FC = () => {
   const [isOutside, setIsOutside] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [showFacebook, setShowFacebook] = useState(false);
+  const facebookRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     // Only load the hero video on larger screens and after initial paint,
@@ -62,21 +65,51 @@ const HomePage: FC = () => {
     idle(() => setShowVideo(true));
   }, []);
 
+  // Lazy-mount the Facebook iframes only when scrolled near them.
+  // The Facebook plugin pulls hundreds of KB of JS that would block mobile load.
+  useEffect(() => {
+    const el = facebookRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setShowFacebook(true);
+      return;
+    }
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShowFacebook(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: "400px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <Layout lightMode={isOutside ? "outside" : "inside"}>
       {/* Hero Section */}
-      <section
-        className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden"
-        style={
-          videoReady
-            ? undefined
-            : {
-                backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.6) 50%, hsl(var(--background)) 100%), url(${bandHero})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }
-        }
-      >
+      <section className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden">
+        {/* Hero background image: tiny mobile variant on small screens, full on desktop.
+            Rendered as a real <img> so the browser uses srcset and fetchpriority for fast paint. */}
+        <img
+          src={bandHeroMobile}
+          srcSet={`${bandHeroMobile} 768w, ${bandHero} 1600w`}
+          sizes="100vw"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-500"
+          style={{ opacity: videoReady ? 0 : 1 }}
+        />
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, hsl(var(--background) / 0.6) 50%, hsl(var(--background)) 100%)",
+          }}
+        />
         {/* Video background (desktop, deferred) */}
         {showVideo && (
           <div className="absolute inset-0 z-0">
@@ -183,6 +216,8 @@ const HomePage: FC = () => {
                     <img
                       src={member.image}
                       alt={member.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full aspect-[3/4] object-cover"
                     />
                   ) : (
@@ -216,6 +251,8 @@ const HomePage: FC = () => {
                 <img
                   src={photo.src}
                   alt={photo.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full aspect-[4/3] object-cover"
                 />
               </div>
@@ -242,29 +279,37 @@ const HomePage: FC = () => {
         <p className="text-center text-muted-foreground mb-8">
           The latest updates from the band
         </p>
-        {/* Desktop Facebook embed */}
-        <div className="hidden sm:flex max-w-lg mx-auto glass-panel rounded-xl overflow-hidden justify-center" style={{ padding: 0 }}>
-          <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
-            style={{ border: "none", overflow: "hidden", width: 500, maxWidth: "100%", display: "block" }}
-            height="600"
-            scrolling="no"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            title="The Insiders / The Outsiders Facebook Feed"
-          />
-        </div>
-        {/* Mobile Facebook embed */}
-        <div className="flex sm:hidden mx-auto glass-panel rounded-xl overflow-hidden justify-center" style={{ padding: 0 }}>
-          <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=320&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
-            style={{ border: "none", overflow: "hidden", width: 320, maxWidth: "100%", display: "block" }}
-            height="500"
-            scrolling="no"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            title="The Insiders / The Outsiders Facebook Feed"
-          />
+        <div ref={facebookRef}>
+          {/* Desktop Facebook embed (lazy-mounted on scroll near viewport) */}
+          <div className="hidden sm:flex max-w-lg mx-auto glass-panel rounded-xl overflow-hidden justify-center" style={{ padding: 0, minHeight: 600 }}>
+            {showFacebook && (
+              <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                style={{ border: "none", overflow: "hidden", width: 500, maxWidth: "100%", display: "block" }}
+                height="600"
+                loading="lazy"
+                scrolling="no"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                title="The Insiders / The Outsiders Facebook Feed"
+              />
+            )}
+          </div>
+          {/* Mobile Facebook embed (lazy-mounted on scroll near viewport) */}
+          <div className="flex sm:hidden mx-auto glass-panel rounded-xl overflow-hidden justify-center" style={{ padding: 0, minHeight: 500 }}>
+            {showFacebook && (
+              <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=320&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                style={{ border: "none", overflow: "hidden", width: 320, maxWidth: "100%", display: "block" }}
+                height="500"
+                loading="lazy"
+                scrolling="no"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                title="The Insiders / The Outsiders Facebook Feed"
+              />
+            )}
+          </div>
         </div>
       </AnimatedSection>
 
