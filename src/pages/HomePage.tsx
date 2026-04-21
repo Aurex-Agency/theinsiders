@@ -42,6 +42,7 @@ const HomePage: FC = () => {
   const { data: upcomingShows = [], isLoading } = useShows(3);
   const [isOutside, setIsOutside] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     // Only load the hero video on larger screens and after initial paint,
@@ -66,11 +67,15 @@ const HomePage: FC = () => {
       {/* Hero Section */}
       <section
         className="min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center px-4 pt-8 pb-12 relative overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.6) 50%, hsl(var(--background)) 100%), url(${bandHero})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        style={
+          videoReady
+            ? undefined
+            : {
+                backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.6) 50%, hsl(var(--background)) 100%), url(${bandHero})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }
+        }
       >
         {/* Video background (desktop, deferred) */}
         {showVideo && (
@@ -81,9 +86,10 @@ const HomePage: FC = () => {
               muted
               playsInline
               preload="none"
-              className="w-full h-full object-cover"
+              onPlaying={() => setVideoReady(true)}
+              className="w-full h-full object-cover transition-opacity duration-700"
               style={{
-                opacity: 0.25,
+                opacity: videoReady ? 0.25 : 0,
                 maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
                 WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
               }}
