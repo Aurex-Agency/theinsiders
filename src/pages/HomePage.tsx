@@ -216,6 +216,8 @@ const HomePage: FC = () => {
                     <img
                       src={member.image}
                       alt={member.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full aspect-[3/4] object-cover"
                     />
                   ) : (
@@ -249,6 +251,8 @@ const HomePage: FC = () => {
                 <img
                   src={photo.src}
                   alt={photo.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full aspect-[4/3] object-cover"
                 />
               </div>
@@ -275,29 +279,37 @@ const HomePage: FC = () => {
         <p className="text-center text-muted-foreground mb-8">
           The latest updates from the band
         </p>
-        {/* Desktop Facebook embed */}
-        <div className="hidden sm:flex max-w-lg mx-auto glass-panel rounded-xl overflow-hidden justify-center" style={{ padding: 0 }}>
-          <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
-            style={{ border: "none", overflow: "hidden", width: 500, maxWidth: "100%", display: "block" }}
-            height="600"
-            scrolling="no"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            title="The Insiders / The Outsiders Facebook Feed"
-          />
-        </div>
-        {/* Mobile Facebook embed */}
-        <div className="flex sm:hidden mx-auto glass-panel rounded-xl overflow-hidden justify-center" style={{ padding: 0 }}>
-          <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=320&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
-            style={{ border: "none", overflow: "hidden", width: 320, maxWidth: "100%", display: "block" }}
-            height="500"
-            scrolling="no"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            title="The Insiders / The Outsiders Facebook Feed"
-          />
+        <div ref={facebookRef}>
+          {/* Desktop Facebook embed (lazy-mounted on scroll near viewport) */}
+          <div className="hidden sm:flex max-w-lg mx-auto glass-panel rounded-xl overflow-hidden justify-center" style={{ padding: 0, minHeight: 600 }}>
+            {showFacebook && (
+              <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                style={{ border: "none", overflow: "hidden", width: 500, maxWidth: "100%", display: "block" }}
+                height="600"
+                loading="lazy"
+                scrolling="no"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                title="The Insiders / The Outsiders Facebook Feed"
+              />
+            )}
+          </div>
+          {/* Mobile Facebook embed (lazy-mounted on scroll near viewport) */}
+          <div className="flex sm:hidden mx-auto glass-panel rounded-xl overflow-hidden justify-center" style={{ padding: 0, minHeight: 500 }}>
+            {showFacebook && (
+              <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61578316648590&tabs=timeline&width=320&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                style={{ border: "none", overflow: "hidden", width: 320, maxWidth: "100%", display: "block" }}
+                height="500"
+                loading="lazy"
+                scrolling="no"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                title="The Insiders / The Outsiders Facebook Feed"
+              />
+            )}
+          </div>
         </div>
       </AnimatedSection>
 
